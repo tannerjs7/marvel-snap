@@ -17,3 +17,17 @@ def toggle_owned(request, card_name):
     else: card.owned = False
     card.save()
     return HttpResponseRedirect(reverse('snap:index'))
+
+
+def add_card(request):
+    card = Card(
+        name = request.POST.get('name'),
+        image = request.FILES['image'],
+        cost = request.POST.get('cost'),
+        power = request.POST.get('power'),
+        description = request.POST.get('description'),
+        pool = request.POST.get('pool'),
+        owned = True if request.POST.get('owned') == 'on' else False
+    )
+    card.save()
+    return HttpResponseRedirect(reverse('snap:index'))

@@ -38,6 +38,30 @@
             </form>
         </tr>
         {% endfor %}
+        <tr>
+            <form action="{% url 'snap:add_card' %}" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <td><input type="file" name="image"></td>
+                <td><input type="text" name="name"></td>
+                <td><input type="number" name="cost"></td>
+                <td><input type="number" name="power"></td>
+                <td><input type="text" name="description"></td>
+                <td>
+                    <select name="pool">
+                        <option value="starter">Starter Card</option>
+                        <option value="recruit">Recruit Season</option>
+                        <option value="1">Pool 1</option>
+                        <option value="2">Pool 2</option>
+                        <option value="3">Pool 3</option>
+                        <option value="4">Pool 4</option>
+                        <option value="5">Pool 5</option>
+                        <option value="none">None</option>
+                    </select>
+                </td>
+                <td><input type="checkbox" name="owned"></td>
+                <td><input type="submit" value="submit"></td>
+            </form>
+        </tr>
     </table>
 </body>
 </html>

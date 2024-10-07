@@ -3,14 +3,14 @@ from django.db import models
 
 class Card(models.Model):
     POOL_CHOICES = {
-        'Starter': 'Starter Card',
-        'Recruit': 'Recruit Season',
+        'starter': 'Starter Card',
+        'recruit': 'Recruit Season',
         '1': 'Pool 1',
         '2': 'Pool 2',
         '3': 'Pool 3',
         '4': 'Pool 4',
         '5': 'Pool 5',
-        'None': 'None'
+        'none': 'None'
     }
 
     name = models.CharField(primary_key=True, unique=True, max_length=50)
