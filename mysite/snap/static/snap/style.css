@@ -1,0 +1,14 @@
+table {
+    width: 100%;
+}
+
+th, td {
+    border: 1px solid black;
+    padding: 5px;
+    text-align: center;
+}
+
+img {
+    height: 300px;
+    width: 300px;
+}

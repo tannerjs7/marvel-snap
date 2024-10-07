@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marvel Snap Cards</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'snap/style.css' %}">
+</head>
+<body>
+    <table>
+        <tr>
+            <th>Image</th>
+            <th>Name</th>
+            <th>Cost</th>
+            <th>Power</th>
+            <th>Description</th>
+            <th>Pool</th>
+            <th>Owned</th>
+            <th>Submit</th>
+        </tr>
+        {% for card in cards %}
+        <tr>
+            <td><img src="{{ card.image.url }}"></td>
+            <td>{{ card.name }}</td>
+            <td>{{ card.cost }}</td>
+            <td>{{ card.power }}</td>
+            <td>{{ card.description }}</td>
+            <td>{{ card.pool }}</td>
+            <form action="{% url 'snap:toggle_owned' card.name %}" method="post">
+                {% csrf_token %}
+                <td>
+                    <input type="checkbox" name="owned" {% if card.owned %} checked {% endif %}>
+                </td>
+                <td>
+                    <input type="submit" value="submit">
+                </td>
+            </form>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
