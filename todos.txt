@@ -1,0 +1,4 @@
+- Add styles to table
+- Add sort functionality
+- Add try/except/else to views
+- Add edit functionality
