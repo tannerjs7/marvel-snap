@@ -4,8 +4,12 @@ from django.urls import reverse
 from .models import Card
 
 
-def index(request):
+def index(request, sort_column=None, sort_type='asc'):
     cards = Card.objects.all()
+    if sort_column:
+        if sort_type == 'desc':
+            sort_column = '-' + sort_column
+        cards = cards.order_by(sort_column)
     owned_rates = [[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0],[0, 0]]
     for card in cards:
         if card.pool == 'starter':
@@ -32,7 +36,11 @@ def index(request):
         elif card.pool == 'none':
             owned_rates[7][1] += 1
             if card.owned == True: owned_rates[7][0] += 1
-    context = {'cards': cards, 'owned_rates': owned_rates}
+    context = {'cards': cards,
+               'owned_rates': owned_rates,
+               'columns': ['image', 'name', 'cost', 'power', 'description', 'pool', 'owned', 'submit'],
+               'sortable_columns': ['name', 'cost', 'power', 'pool', 'owned']
+               }
     return render(request, 'snap/index.html', context)
 
 
@@ -57,3 +65,7 @@ def add_card(request):
     )
     card.save()
     return HttpResponseRedirect(reverse('snap:index'))
+
+
+# def sort_cards(request, sort_column, sort_type):
+#     return HttpResponseRedirect(reverse('snap:index', args=[sort_column, sort_type]))

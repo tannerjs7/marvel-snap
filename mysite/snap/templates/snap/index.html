@@ -16,60 +16,77 @@
     <div>Pool 4 Cards: {{ owned_rates.5.0 }} / {{ owned_rates.5.1 }}</div>
     <div>Pool 5 Cards: {{ owned_rates.6.0 }} / {{ owned_rates.6.1 }}</div>
     <div>Other Cards: {{ owned_rates.7.0 }} / {{ owned_rates.7.1 }}</div>
-    <table>
-        <tr>
-            <th>Image</th>
-            <th>Name</th>
-            <th>Cost</th>
-            <th>Power</th>
-            <th>Description</th>
-            <th>Pool</th>
-            <th>Owned</th>
-            <th>Submit</th>
-        </tr>
-        {% for card in cards %}
-        <tr>
-            <td><img src="{{ card.image.url }}"></td>
-            <td>{{ card.name }}</td>
-            <td>{{ card.cost }}</td>
-            <td>{{ card.power }}</td>
-            <td>{{ card.description }}</td>
-            <td>{{ card.pool }}</td>
-            <form action="{% url 'snap:toggle_owned' card.name %}" method="post">
-                {% csrf_token %}
-                <td>
-                    <input type="checkbox" name="owned" {% if card.owned %} checked {% endif %}>
-                </td>
-                <td>
-                    <input type="submit" value="submit">
-                </td>
-            </form>
-        </tr>
-        {% endfor %}
-        <tr>
-            <form action="{% url 'snap:add_card' %}" method="post" enctype="multipart/form-data">
-                {% csrf_token %}
-                <td><input type="file" name="image" required></td>
-                <td><input type="text" name="name" required></td>
-                <td><input type="number" name="cost" required></td>
-                <td><input type="number" name="power" required></td>
-                <td><input type="text" name="description" required></td>
-                <td>
-                    <select name="pool">
-                        <option value="starter">Starter Card</option>
-                        <option value="recruit">Recruit Season</option>
-                        <option value="1">Pool 1</option>
-                        <option value="2">Pool 2</option>
-                        <option value="3">Pool 3</option>
-                        <option value="4">Pool 4</option>
-                        <option value="5">Pool 5</option>
-                        <option value="none">None</option>
-                    </select>
-                </td>
-                <td><input type="checkbox" name="owned"></td>
-                <td><input type="submit" value="submit"></td>
-            </form>
-        </tr>
+
+    <table id="data-table">
+        <thead>
+            <tr>
+                {% for column in columns %}
+                <th>{{ column|title }}
+                    {% if column in sortable_columns %}
+                    <form action="{% url 'snap:sort' column 'asc' %}" method="get">
+                        <input type="submit" value="Sort Asc">
+                    </form>
+                    <form action="{% url 'snap:sort' column 'desc' %}" method="get">
+                        <input type="submit" value="Sort Desc">
+                    </form>
+                    {% endif %}
+                </th>
+                {% endfor %}
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for card in cards %}
+            <tr>
+                <td><img src="{{ card.image.url }}"></td>
+                <td>{{ card.name }}</td>
+                <td>{{ card.cost }}</td>
+                <td>{{ card.power }}</td>
+                <td>{{ card.description }}</td>
+                <td>{{ card.pool }}</td>
+                <form action="{% url 'snap:toggle_owned' card.name %}" method="post">
+                    {% csrf_token %}
+                    <td>
+                        <input type="checkbox" name="owned" {% if card.owned %} checked {% endif %}>
+                    </td>
+                    <td>
+                        <input type="submit" value="submit">
+                    </td>
+                </form>
+            </tr>
+            {% endfor %}
+            <tr>
+                <form action="{% url 'snap:add_card' %}" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <td><input type="file" name="image" required></td>
+                    <td><input type="text" name="name" required></td>
+                    <td><input type="number" name="cost" required></td>
+                    <td><input type="number" name="power" required></td>
+                    <td><input type="text" name="description" required></td>
+                    <td>
+                        <select name="pool">
+                            <option value="starter">Starter Card</option>
+                            <option value="recruit">Recruit Season</option>
+                            <option value="1">Pool 1</option>
+                            <option value="2">Pool 2</option>
+                            <option value="3">Pool 3</option>
+                            <option value="4">Pool 4</option>
+                            <option value="5">Pool 5</option>
+                            <option value="none">None</option>
+                        </select>
+                    </td>
+                    <td><input type="checkbox" name="owned"></td>
+                    <td><input type="submit" value="submit"></td>
+                </form>
+            </tr>
+        </tbody>
     </table>
+
+    <!-- <script>
+        function sortLow(column) {
+            let table = document.getElementById("data-table");
+            let rows = Array.from(table.getElementsByTagName("tr")).slice(1);
+        }
+    </script> -->
 </body>
 </html>
