@@ -5,7 +5,7 @@ from .models import Card
 
 
 def index(request):
-    cards = Card.objects.all()
+    cards = Card.objects.all().order_by('name')
     context = {'cards': cards,
                'columns': ['image', 'name', 'cost', 'power', 'description', 'pool', 'owned', 'submit'],
                'sortable_columns': ['name', 'cost', 'power', 'pool', 'owned']

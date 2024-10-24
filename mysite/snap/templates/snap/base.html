@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% block head %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marvel Snap</title>
+    {% endblock %}
+</head>
+<body>
+    {% block navbar %}
+    <nav>
+        <a href="{% url 'snap:index' %}">Cards</a>
+        <a href="{% url 'snap:stats' %}">Stats</a>
+    </nav>
+    {% endblock %}
+    {% block body %}
+    <div>Body</div>
+    {% endblock %}
+</body>
+</html>
