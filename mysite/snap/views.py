@@ -4,13 +4,19 @@ from django.urls import reverse
 from .models import Card
 
 
-def index(request, sort_column=None, sort_type='asc'):
+def index(request):
     cards = Card.objects.all()
-    if sort_column:
-        if sort_type == 'desc':
-            sort_column = '-' + sort_column
-        cards = cards.order_by(sort_column)
+    context = {'cards': cards,
+               'columns': ['image', 'name', 'cost', 'power', 'description', 'pool', 'owned', 'submit'],
+               'sortable_columns': ['name', 'cost', 'power', 'pool', 'owned']
+    }
+    return render(request, 'snap/index.html', context)
+
+
+def stats(request):
+    cards = Card.objects.all()
     owned_rates = [[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0],[0, 0]]
+    pools = ['Starter', 'Recruit', 'Pool 1', 'Pool 2', 'Pool 3', 'Pool 4', 'Pool 5', 'None']
     for card in cards:
         if card.pool == 'starter':
             owned_rates[0][1] += 1
@@ -36,15 +42,10 @@ def index(request, sort_column=None, sort_type='asc'):
         elif card.pool == 'none':
             owned_rates[7][1] += 1
             if card.owned == True: owned_rates[7][0] += 1
-    context = {'cards': cards,
-               'owned_rates': owned_rates,
-               'columns': ['image', 'name', 'cost', 'power', 'description', 'pool', 'owned', 'submit'],
-               'sortable_columns': ['name', 'cost', 'power', 'pool', 'owned']
-               }
-    return render(request, 'snap/index.html', context)
+    context = {'cards': cards, 'owned_rates': owned_rates, 'pools': pools}
+    return render(request, 'snap/stats.html', context)
 
 
-# add try/except/else
 def toggle_owned(request, card_name):
     card = get_object_or_404(Card, pk=card_name)
     if request.POST.get('owned') == 'on': card.owned = True
@@ -65,7 +66,3 @@ def add_card(request):
     )
     card.save()
     return HttpResponseRedirect(reverse('snap:index'))
-
-
-# def sort_cards(request, sort_column, sort_type):
-#     return HttpResponseRedirect(reverse('snap:index', args=[sort_column, sort_type]))

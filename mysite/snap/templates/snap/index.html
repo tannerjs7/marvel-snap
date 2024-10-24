@@ -6,31 +6,18 @@
     <title>Marvel Snap Cards</title>
     {% load static %}
     <link rel="stylesheet" href="{% static 'snap/style.css' %}">
+
+    <!-- Install DataTables -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.js"></script>
 </head>
 <body>
-    <div>Starter Cards: {{ owned_rates.0.0 }} / {{ owned_rates.0.1 }}</div>
-    <div>Recruit Cards: {{ owned_rates.1.0 }} / {{ owned_rates.1.1 }}</div>
-    <div>Pool 1 Cards: {{ owned_rates.2.0 }} / {{ owned_rates.2.1 }}</div>
-    <div>Pool 2 Cards: {{ owned_rates.3.0 }} / {{ owned_rates.3.1 }}</div>
-    <div>Pool 3 Cards: {{ owned_rates.4.0 }} / {{ owned_rates.4.1 }}</div>
-    <div>Pool 4 Cards: {{ owned_rates.5.0 }} / {{ owned_rates.5.1 }}</div>
-    <div>Pool 5 Cards: {{ owned_rates.6.0 }} / {{ owned_rates.6.1 }}</div>
-    <div>Other Cards: {{ owned_rates.7.0 }} / {{ owned_rates.7.1 }}</div>
-
     <table id="data-table">
         <thead>
             <tr>
                 {% for column in columns %}
-                <th>{{ column|title }}
-                    {% if column in sortable_columns %}
-                    <form action="{% url 'snap:sort' column 'asc' %}" method="get">
-                        <input type="submit" value="Sort Asc">
-                    </form>
-                    <form action="{% url 'snap:sort' column 'desc' %}" method="get">
-                        <input type="submit" value="Sort Desc">
-                    </form>
-                    {% endif %}
-                </th>
+                <th>{{ column|title }}</th>
                 {% endfor %}
             </tr>
         </thead>
@@ -46,12 +33,8 @@
                 <td>{{ card.pool }}</td>
                 <form action="{% url 'snap:toggle_owned' card.name %}" method="post">
                     {% csrf_token %}
-                    <td>
-                        <input type="checkbox" name="owned" {% if card.owned %} checked {% endif %}>
-                    </td>
-                    <td>
-                        <input type="submit" value="submit">
-                    </td>
+                    <td><input type="checkbox" name="owned" {% if card.owned %} checked {% endif %}></td>
+                    <td><input type="submit" value="submit"></td>
                 </form>
             </tr>
             {% endfor %}
@@ -82,11 +65,10 @@
         </tbody>
     </table>
 
-    <!-- <script>
-        function sortLow(column) {
-            let table = document.getElementById("data-table");
-            let rows = Array.from(table.getElementsByTagName("tr")).slice(1);
-        }
-    </script> -->
+    <script>
+        $(document).ready(function() {
+            $('#data-table').DataTable();
+        });
+    </script>
 </body>
 </html>

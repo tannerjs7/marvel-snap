@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stats</title>
+    {% load static filters %}
+    <link rel="stylesheet" href="{% static 'snap/style.css' %}">
+</head>
+<body>
+    <table>
+        <thead>
+            <tr>
+                <th>Pool</th>
+                <th>Owned</th>
+                <th>Total</th>
+                <th>Percent</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for pool in pools %}
+            {% with count=forloop.counter0 %}
+            <tr>
+                <td>{{ pool }}</td>
+                <td>{{ owned_rates|lookup0:count }}</td>
+                <td>{{ owned_rates|lookup1:count }}</td>
+                <td>{% widthratio owned_rates|lookup0:count owned_rates|lookup1:count 100 %}</td>
+            </tr>
+            {% endwith %}
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
