@@ -13,6 +13,19 @@ img {
     width: 300px;
 }
 
-.sort {
-    display: inline
+nav {
+    background-color: rgb(237, 237, 123);
+    display: flex;
+    justify-content: space-evenly;
+    border: 1px solid black;
+    margin: 20px;
+    font-size: 60px;
+}
+
+nav a {
+    background-color: rgb(207, 225, 231);
+    text-decoration: none;
+    color: black;
+    padding: 0px 10px;
+    margin: 5px 0px;
 }
