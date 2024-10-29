@@ -15,8 +15,9 @@ def index(request):
 
 def stats(request):
     cards = Card.objects.all()
-    owned_rates = [[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0],[0, 0]]
-    pools = ['Starter', 'Recruit', 'Pool 1', 'Pool 2', 'Pool 3', 'Pool 4', 'Pool 5', 'None']
+    owned_rates = [[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]]
+    pools = ['Starter', 'Recruit', 'Pool 1', 'Pool 2', 'Pool 3', 'Pool 4', 'Pool 5', 'All']
+
     for card in cards:
         if card.pool == 'starter':
             owned_rates[0][1] += 1
@@ -39,10 +40,14 @@ def stats(request):
         elif card.pool == '5':
             owned_rates[6][1] += 1
             if card.owned == True: owned_rates[6][0] += 1
-        elif card.pool == 'none':
+        if card.pool != 'none':
             owned_rates[7][1] += 1
             if card.owned == True: owned_rates[7][0] += 1
-    context = {'cards': cards, 'owned_rates': owned_rates, 'pools': pools}
+
+    context = {'cards': cards,
+               'owned_rates': owned_rates,
+               'pools': pools
+    }
     return render(request, 'snap/stats.html', context)
 
 
