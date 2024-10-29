@@ -1,11 +1,24 @@
-table {
-    width: 100%;
-}
-
 th, td {
     border: 1px solid black;
     padding: 5px;
     text-align: center;
+}
+
+#add-card {
+    width: 100%;
+    margin: 40px 0;
+}
+
+#image-input {
+    width: 180px;
+}
+
+#cost-input, #power-input {
+    width: 40px;
+}
+
+#description-input {
+    width: 300px;
 }
 
 img {
@@ -18,14 +31,14 @@ nav {
     display: flex;
     justify-content: space-evenly;
     border: 1px solid black;
-    margin: 20px;
     font-size: 60px;
 }
 
 nav a {
-    background-color: rgb(207, 225, 231);
+    background-color: rgb(224, 228, 16);
     text-decoration: none;
     color: black;
     padding: 0px 10px;
-    margin: 5px 0px;
+    border: 1px solid black;
+    margin: 10px 0px;
 }

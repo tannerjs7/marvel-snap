@@ -1,4 +1,7 @@
-- Add styles to table
-- Add sort functionality
+- Style tables and navbar
+- Add comments
 - Add try/except/else to views
 - Add edit functionality
+- Add remaining cards to database
+- Let datatable sort by owned
+- Add favicon
