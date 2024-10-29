@@ -18,32 +18,45 @@
 </head>
 <body>
     {% block body %}
+    <h1>Add a Card</h1>
     <table id="add-card">
-        <tr>
-            <form action="{% url 'snap:add_card' %}" method="post" enctype="multipart/form-data">
-                {% csrf_token %}
-                <td><input type="file" id="image-input" name="image" required></td>
-                <td><input type="text" id="name-input" name="name" required></td>
-                <td><input type="number" id="cost-input" name="cost" required></td>
-                <td><input type="number" id="power-input" name="power" required></td>
-                <td><input type="text" id="description-input" name="description" required></td>
-                <td>
-                    <select name="pool">
-                        <option value="starter">Starter Card</option>
-                        <option value="recruit">Recruit Season</option>
-                        <option value="1">Pool 1</option>
-                        <option value="2">Pool 2</option>
-                        <option value="3">Pool 3</option>
-                        <option value="4">Pool 4</option>
-                        <option value="5">Pool 5</option>
-                        <option value="none">None</option>
-                    </select>
-                </td>
-                <td><input type="checkbox" name="owned"></td>
-                <td><input type="submit" value="submit"></td>
-            </form>
-        </tr>
+        <thead>
+            <tr>
+                {% for column in columns %}
+                <th>{{ column|title }}</th>
+                {% endfor %}
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                <form action="{% url 'snap:add_card' %}" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <td><input type="file" id="image-input" name="image" required></td>
+                    <td><input type="text" id="name-input" name="name" required></td>
+                    <td><input type="number" id="cost-input" name="cost" required></td>
+                    <td><input type="number" id="power-input" name="power" required></td>
+                    <td><input type="text" id="description-input" name="description" required></td>
+                    <td>
+                        <select name="pool">
+                            <option value="starter">Starter Card</option>
+                            <option value="recruit">Recruit Season</option>
+                            <option value="1">Pool 1</option>
+                            <option value="2">Pool 2</option>
+                            <option value="3">Pool 3</option>
+                            <option value="4">Pool 4</option>
+                            <option value="5">Pool 5</option>
+                            <option value="none">None</option>
+                        </select>
+                    </td>
+                    <td><input type="checkbox" name="owned"></td>
+                    <td><input type="submit" value="submit"></td>
+                </form>
+            </tr>
+        </tbody>
     </table>
+
+    <h1>All Cards</h1>
     <table id="data-table">
         <thead>
             <tr>
@@ -69,30 +82,6 @@
                 </form>
             </tr>
             {% endfor %}
-            <!-- <tr>
-                <form action="{% url 'snap:add_card' %}" method="post" enctype="multipart/form-data">
-                    {% csrf_token %}
-                    <td><input type="file" name="image" required></td>
-                    <td><input type="text" name="name" required></td>
-                    <td><input type="number" name="cost" required></td>
-                    <td><input type="number" name="power" required></td>
-                    <td><input type="text" name="description" required></td>
-                    <td>
-                        <select name="pool">
-                            <option value="starter">Starter Card</option>
-                            <option value="recruit">Recruit Season</option>
-                            <option value="1">Pool 1</option>
-                            <option value="2">Pool 2</option>
-                            <option value="3">Pool 3</option>
-                            <option value="4">Pool 4</option>
-                            <option value="5">Pool 5</option>
-                            <option value="none">None</option>
-                        </select>
-                    </td>
-                    <td><input type="checkbox" name="owned"></td>
-                    <td><input type="submit" value="submit"></td>
-                </form>
-            </tr> -->
         </tbody>
     </table>
 

@@ -13,6 +13,7 @@
 </head>
 <body>
     {% block body %}
+    <h1>Stats</h1>
     <table>
         <thead>
             <tr>
@@ -22,6 +23,7 @@
                 <th>Percent</th>
             </tr>
         </thead>
+        
         <tbody>
             {% for pool in pools %}
             {% with count=forloop.counter0 %}
