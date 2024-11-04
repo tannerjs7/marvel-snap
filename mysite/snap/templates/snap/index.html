@@ -1,7 +1,7 @@
 {% extends 'snap/base.html' %}
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
 <head>
     {% block head %}
     <meta charset="UTF-8">
@@ -87,7 +87,9 @@
 
     <script>
         $(document).ready(function() {
-            $('#data-table').DataTable();
+            $('#data-table').DataTable({
+                "color": "white"
+            });
         });
     </script>
     {% endblock %}
