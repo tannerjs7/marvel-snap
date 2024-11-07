@@ -36,22 +36,22 @@ img {
 }
 
 nav {
-    background-color: rgb(133, 133, 133);
+    background-color: rgb(70, 70, 70);
     display: flex;
     justify-content: space-evenly;
-    border: 1px solid black;
     font-size: 60px;
     margin-bottom: 40px;
     border-radius: 30px;
 }
 
 nav a {
-    background-color: rgb(224, 228, 16);
+    background-color: rgb(161, 161, 161);
     text-decoration: none;
     color: black;
     padding: 0px 10px;
     border: 1px solid black;
     margin: 10px 0px;
+    border-radius: 30px;
 }
 
 .dataTables_filter input, .dataTables_length select {

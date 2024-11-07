@@ -74,7 +74,7 @@
                 <td>{{ card.cost }}</td>
                 <td>{{ card.power }}</td>
                 <td>{{ card.description }}</td>
-                <td>{{ card.pool }}</td>
+                <td>{{ card.get_pool_display }}</td>
                 <form action="{% url 'snap:toggle_owned' card.name %}" method="post">
                     {% csrf_token %}
                     <td><input type="checkbox" name="owned" {% if card.owned %} checked {% endif %}></td>
