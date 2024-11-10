@@ -13,9 +13,13 @@ th, td {
     padding: 5px;
 }
 
-#add-card {
+#add-card-title {
+    margin-top: 80px;
+}
+
+#add-card-form {
     width: 100%;
-    margin-bottom: 40px;
+    margin-bottom: 80px;
 }
 
 #image-input {
@@ -35,26 +39,40 @@ img {
     width: 300px;
 }
 
+a {
+    text-decoration: none;
+    color: black;
+    background-color: rgb(161, 161, 161);
+    border-radius: 30px;
+    border: 1px solid black;
+    padding: 0px 10px;
+}
+
+#filters {
+    background-color: rgb(70, 70, 70);
+    font-size: 30px;
+    border-radius: 30px;
+    padding: 5px;
+}
+
+#filters div {
+    margin: 10px;
+}
+
 nav {
     background-color: rgb(70, 70, 70);
     display: flex;
     justify-content: space-evenly;
     font-size: 60px;
-    margin-bottom: 40px;
+    /* margin-bottom: 60px; */
     border-radius: 30px;
 }
 
 nav a {
-    background-color: rgb(161, 161, 161);
-    text-decoration: none;
-    color: black;
-    padding: 0px 10px;
-    border: 1px solid black;
     margin: 10px 0px;
-    border-radius: 30px;
 }
 
 .dataTables_filter input, .dataTables_length select {
     color: white;
     margin-bottom: 10px;
-  }
+}

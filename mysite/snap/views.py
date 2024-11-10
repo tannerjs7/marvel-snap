@@ -1,14 +1,25 @@
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render
 from django.urls import reverse
+from django.db.models import Q
 from .models import Card
 
 
-def index(request):
-    cards = Card.objects.all().order_by('name')
+def index(request, filter=None):
+    if filter == 'owned':
+        cards = Card.objects.filter(owned=True)
+    elif filter == 'unowned':
+        cards = Card.objects.filter(owned=False)
+    elif filter == 'none':
+        cards = Card.objects.filter(pool='none')
+    elif filter == 'starter':
+        cards = Card.objects.filter(Q(pool='starter') | Q(pool='recruit'))
+    elif filter:
+        cards = Card.objects.filter(pool=filter)
+    else:
+        cards = Card.objects.filter(~Q(pool='none'))
     context = {'cards': cards,
-               'columns': ['image', 'name', 'cost', 'power', 'description', 'pool', 'owned', 'submit'],
-               'sortable_columns': ['name', 'cost', 'power', 'pool', 'owned']
+               'columns': ['image', 'name', 'cost', 'power', 'description', 'pool', 'owned', 'submit']
     }
     return render(request, 'snap/index.html', context)
 

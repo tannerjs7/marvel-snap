@@ -18,8 +18,8 @@
 </head>
 <body>
     {% block body %}
-    <h1>Add a Card</h1>
-    <table id="add-card">
+    <h1 id="add-card-title">Add a Card</h1>
+    <table id="add-card-form">
         <thead>
             <tr>
                 {% for column in columns %}
@@ -56,7 +56,27 @@
         </tbody>
     </table>
 
-    <h1>All Cards</h1>
+    <div id="filters">
+        <div>Filters</div>
+        <div>
+            <a href="{% url 'snap:filter' '1' %}">Pool 1</a>
+            <a href="{% url 'snap:filter' '2' %}">Pool 2</a>
+            <a href="{% url 'snap:filter' '3' %}">Pool 3</a>
+            <a href="{% url 'snap:filter' '4' %}">Pool 4</a>
+            <a href="{% url 'snap:filter' '5' %}">Pool 5</a>
+        </div>
+        <div>
+            <a href="{% url 'snap:filter' 'starter' %}">Starter/Recruit</a>
+            <a href="{% url 'snap:filter' 'none' %}">None</a>
+            <a href="{% url 'snap:index' %}">All</a>
+        </div>
+        <div>
+            <a href="{% url 'snap:filter' 'owned' %}">Owned</a>
+            <a href="{% url 'snap:filter' 'unowned' %}">Unowned</a>
+        </div>
+    </div>
+
+    <h1>Cards</h1>
     <table id="data-table">
         <thead>
             <tr>
@@ -88,7 +108,13 @@
     <script>
         $(document).ready(function() {
             $('#data-table').DataTable({
-                "color": "white"
+                "color": "white",
+                "pageLength": "25",
+                "order": [[1, 'asc']],
+                "columnDefs": [{
+                    "targets": [0, 6, 7],
+                    "orderable": false
+                }]
             });
         });
     </script>

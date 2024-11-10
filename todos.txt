@@ -2,6 +2,6 @@
 - Add comments
 - Add try/except/else to views
 - Add edit functionality
-- Double check cards in database
-- Let datatable sort by owned
 - Add favicon
+- Highlight active filter
+- Fix 'Broken pipe from'
