@@ -6,20 +6,15 @@ from .models import Card
 
 
 def index(request, filter=None):
-    if filter == 'owned':
-        cards = Card.objects.filter(owned=True)
-    elif filter == 'unowned':
-        cards = Card.objects.filter(owned=False)
-    elif filter == 'none':
-        cards = Card.objects.filter(pool='none')
-    elif filter == 'starter':
-        cards = Card.objects.filter(Q(pool='starter') | Q(pool='recruit'))
-    elif filter:
-        cards = Card.objects.filter(pool=filter)
-    else:
-        cards = Card.objects.filter(~Q(pool='none'))
+    if filter == 'owned': cards = Card.objects.filter(owned=True)
+    elif filter == 'unowned': cards = Card.objects.filter(owned=False)
+    elif filter == 'none': cards = Card.objects.filter(pool='none')
+    elif filter == 'starter': cards = Card.objects.filter(Q(pool='starter') | Q(pool='recruit'))
+    elif filter: cards = Card.objects.filter(pool=filter)
+    else: cards = Card.objects.filter(~Q(pool='none'))
     context = {'cards': cards,
-               'columns': ['image', 'name', 'cost', 'power', 'description', 'pool', 'owned', 'submit']
+               'columns': ['image', 'name', 'cost', 'power', 'description', 'pool', 'owned', 'submit'],
+               'filter': filter
     }
     return render(request, 'snap/index.html', context)
 

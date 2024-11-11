@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    {% load static %}
+    <link rel="shortcut icon" type="image/png" href="{% static 'images/snap-logo.png' %}">
     {% block head %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,8 +12,8 @@
 <body>
     {% block navbar %}
     <nav>
-        <a href="{% url 'snap:index' %}">Cards</a>
-        <a href="{% url 'snap:stats' %}">Stats</a>
+        <a href="{% url 'snap:index' %}" {% if request.path|slice:"6:11" == 'cards' %} class="active" {% endif %} >Cards</a>
+        <a href="{% url 'snap:stats' %}" {% if request.path|slice:"6:11" == 'stats' %} class="active" {% endif %} >Stats</a>
         <a href="{% url 'admin:index' %}">Admin</a>
     </nav>
     {% endblock %}

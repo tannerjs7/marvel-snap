@@ -6,7 +6,7 @@
     {% block head %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Marvel Snap Cards</title>
+    <title>Cards</title>
     {% load static %}
     <link rel="stylesheet" href="{% static 'snap/style.css' %}">
 
@@ -57,22 +57,22 @@
     </table>
 
     <div id="filters">
-        <div>Filters</div>
+        <div>Current Filter</div>
         <div>
-            <a href="{% url 'snap:filter' '1' %}">Pool 1</a>
-            <a href="{% url 'snap:filter' '2' %}">Pool 2</a>
-            <a href="{% url 'snap:filter' '3' %}">Pool 3</a>
-            <a href="{% url 'snap:filter' '4' %}">Pool 4</a>
-            <a href="{% url 'snap:filter' '5' %}">Pool 5</a>
+            <a href="{% url 'snap:filter' '1' %}" {% if filter == '1' %} class="active" {% endif %}>Pool 1</a>
+            <a href="{% url 'snap:filter' '2' %}" {% if filter == '2' %} class="active" {% endif %}>Pool 2</a>
+            <a href="{% url 'snap:filter' '3' %}" {% if filter == '3' %} class="active" {% endif %}>Pool 3</a>
+            <a href="{% url 'snap:filter' '4' %}" {% if filter == '4' %} class="active" {% endif %}>Pool 4</a>
+            <a href="{% url 'snap:filter' '5' %}" {% if filter == '5' %} class="active" {% endif %}>Pool 5</a>
         </div>
         <div>
-            <a href="{% url 'snap:filter' 'starter' %}">Starter/Recruit</a>
-            <a href="{% url 'snap:filter' 'none' %}">None</a>
-            <a href="{% url 'snap:index' %}">All</a>
+            <a href="{% url 'snap:filter' 'starter' %}" {% if filter == 'starter' %} class="active" {% endif %}>Starter/Recruit</a>
+            <a href="{% url 'snap:filter' 'none' %}" {% if filter == 'none' %} class="active" {% endif %}>None</a>
+            <a href="{% url 'snap:index' %}" {% if filter == None %} class="active" {% endif %}>All</a>
         </div>
         <div>
-            <a href="{% url 'snap:filter' 'owned' %}">Owned</a>
-            <a href="{% url 'snap:filter' 'unowned' %}">Unowned</a>
+            <a href="{% url 'snap:filter' 'owned' %}" {% if filter == 'owned' %} class="active" {% endif %}>Owned</a>
+            <a href="{% url 'snap:filter' 'unowned' %}" {% if filter == 'unowned' %} class="active" {% endif %}>Unowned</a>
         </div>
     </div>
 

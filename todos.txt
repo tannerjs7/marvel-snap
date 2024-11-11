@@ -1,7 +1,5 @@
-- Style tables and navbar
+- Style stats table
 - Add comments
-- Add try/except/else to views
+- Add try/except/else to views (check best practices)
 - Add edit functionality
-- Add favicon
-- Highlight active filter
-- Fix 'Broken pipe from'
+- Fix 'Broken pipe from' (may not be happening anymore)
