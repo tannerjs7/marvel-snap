@@ -2,7 +2,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render
 from django.urls import reverse
 from django.db.models import Q
-from .models import Card
+from .models import Card, Spotlight
 
 
 def index(request, filter=None):
@@ -52,6 +52,11 @@ def stats(request):
                'pools': pools
     }
     return render(request, 'snap/stats.html', context)
+
+
+def spotlights(request):
+    context = {'spotlights': Spotlight.objects.all(), 'img': Card.objects.get(name='Thena')}
+    return render(request, 'snap/spotlights.html', context)
 
 
 def toggle_owned(request, card_name):

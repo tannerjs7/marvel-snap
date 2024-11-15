@@ -2,4 +2,5 @@
 - Add comments
 - Add try/except/else to views (check best practices)
 - Add edit functionality
-- Fix 'Broken pipe from' (may not be happening anymore)
+- Fix 'Broken pipe from'
+- Enhance spotlights

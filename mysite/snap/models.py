@@ -23,3 +23,14 @@ class Card(models.Model):
 
     def __str__(self):
         return self.name
+    
+class Spotlight(models.Model):
+    date = models.DateField()
+    cards = models.ManyToManyField(Card, related_name='spotlights')
+    pulled1 = models.BooleanField(default=False, verbose_name='Pulled Card 1')
+    pulled2 = models.BooleanField(default=False, verbose_name='Pulled Card 2')
+    pulled3 = models.BooleanField(default=False, verbose_name='Pulled Card 3')
+    pulled4 = models.BooleanField(default=False, verbose_name='Pulled Card 4')
+
+    def __str__(self):
+        return 'Spotlight ' + str(self.date)
