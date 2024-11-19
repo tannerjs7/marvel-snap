@@ -1,6 +1,8 @@
 - Style stats table
 - Add comments
-- Add try/except/else to views (check best practices)
+- Add try/except/else to views (check best practices), add success message
 - Add edit functionality
 - Fix 'Broken pipe from'
 - Enhance spotlights
+- When I refresh spotlights page, why do the add card lists default to the bottom rather than the top?
+- On the spotlights page, make it so you can't click on pulled if you haven't selected a card

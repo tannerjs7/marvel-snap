@@ -12,9 +12,10 @@ def index(request, filter=None):
     elif filter == 'starter': cards = Card.objects.filter(Q(pool='starter') | Q(pool='recruit'))
     elif filter: cards = Card.objects.filter(pool=filter)
     else: cards = Card.objects.filter(~Q(pool='none'))
-    context = {'cards': cards,
-               'columns': ['image', 'name', 'cost', 'power', 'description', 'pool', 'owned', 'submit'],
-               'filter': filter
+    context = {
+        'cards': cards,
+        'columns': ['image', 'name', 'cost', 'power', 'description', 'pool', 'owned', 'submit'],
+        'filter': filter
     }
     return render(request, 'snap/index.html', context)
 
@@ -47,15 +48,20 @@ def stats(request):
             owned_rates[6][1] += 1
             if card.owned == True: owned_rates[6][0] += 1
 
-    context = {'cards': cards,
-               'owned_rates': owned_rates,
-               'pools': pools
+    context = {
+        'cards': cards,
+        'owned_rates': owned_rates,
+        'pools': pools
     }
     return render(request, 'snap/stats.html', context)
 
 
 def spotlights(request):
-    context = {'spotlights': Spotlight.objects.all(), 'img': Card.objects.get(name='Thena')}
+    context = {
+        'spotlights': Spotlight.objects.all(),
+        'cards': Card.objects.filter(~Q(pool='none')).order_by('name'),
+        'slots': range(1, 5)
+    }
     return render(request, 'snap/spotlights.html', context)
 
 
@@ -79,3 +85,21 @@ def add_card(request):
     )
     card.save()
     return HttpResponseRedirect(reverse('snap:index'))
+
+
+def add_spotlight(request):
+    spotlight = Spotlight.objects.create(
+        date = request.POST.get('date'),
+        pulled1 = True if request.POST.get('pulled-1') == 'on' else False,
+        pulled2 = True if request.POST.get('pulled-2') == 'on' else False,
+        pulled3 = True if request.POST.get('pulled-3') == 'on' else False,
+        pulled4 = True if request.POST.get('pulled-4') == 'on' else False
+    )
+    cards_to_add = [
+        request.POST.get('card-1'),
+        request.POST.get('card-2'),
+        request.POST.get('card-3')
+    ]
+    if request.POST.get('card-4'): cards_to_add.append(request.POST.get('card-4'))
+    spotlight.cards.set(cards_to_add)
+    return HttpResponseRedirect(reverse('snap:spotlights'))

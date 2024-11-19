@@ -26,7 +26,7 @@ class Card(models.Model):
     
 class Spotlight(models.Model):
     date = models.DateField()
-    cards = models.ManyToManyField(Card, related_name='spotlights')
+    cards = models.ManyToManyField(Card, related_name='spotlights', blank=True)
     pulled1 = models.BooleanField(default=False, verbose_name='Pulled Card 1')
     pulled2 = models.BooleanField(default=False, verbose_name='Pulled Card 2')
     pulled3 = models.BooleanField(default=False, verbose_name='Pulled Card 3')
