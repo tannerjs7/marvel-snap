@@ -6,3 +6,4 @@
 - Enhance spotlights
 - When I refresh spotlights page, why do the add card lists default to the bottom rather than the top?
 - On the spotlights page, make it so you can't click on pulled if you haven't selected a card
+- Make it so you are always redirected to the login page when not logged in

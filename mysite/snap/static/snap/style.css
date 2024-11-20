@@ -61,6 +61,7 @@ a {
 
 nav {
     background-color: rgb(70, 70, 70);
+    align-items: center;
     display: flex;
     justify-content: space-evenly;
     font-size: 60px;

@@ -1,5 +1,6 @@
 from django.urls import path
 from . import views
+from django.contrib.auth.views import LoginView, LogoutView
 
 
 app_name = 'snap'
@@ -11,4 +12,6 @@ urlpatterns = [
     path('<str:card_name>/toggle_owned/', views.toggle_owned, name='toggle_owned'),
     path('add_card/', views.add_card, name='add_card'),
     path('add_spotlight/', views.add_spotlight, name='add_spotlight'),
+    path('login/', LoginView.as_view(template_name='login.html'), name='login'),
+    path('logout/', LogoutView.as_view(), name='logout'),
 ]
