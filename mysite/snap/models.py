@@ -26,7 +26,10 @@ class Card(models.Model):
     
 class Spotlight(models.Model):
     date = models.DateField()
-    cards = models.ManyToManyField(Card, related_name='spotlights', blank=True)
+    card1 = models.ForeignKey(Card, null=True, on_delete=models.SET_NULL, related_name='first_spotlight_slots')
+    card2 = models.ForeignKey(Card, null=True, on_delete=models.SET_NULL, related_name='second_spotlight_slots')
+    card3 = models.ForeignKey(Card, null=True, on_delete=models.SET_NULL, related_name='third_spotlight_slots')
+    card4 = models.ForeignKey(Card, blank=True, null=True, on_delete=models.SET_NULL, related_name='fourth_spotlights_slots')
     pulled1 = models.BooleanField(default=False, verbose_name='Pulled Card 1')
     pulled2 = models.BooleanField(default=False, verbose_name='Pulled Card 2')
     pulled3 = models.BooleanField(default=False, verbose_name='Pulled Card 3')

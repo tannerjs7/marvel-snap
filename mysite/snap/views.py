@@ -62,7 +62,7 @@ def stats(request):
 @login_required
 def spotlights(request):
     context = {
-        'spotlights': Spotlight.objects.all(),
+        'spotlights': Spotlight.objects.all().order_by('-date'),
         'cards': Card.objects.filter(~Q(pool='none')).order_by('name'),
         'slots': range(1, 5)
     }
@@ -95,18 +95,18 @@ def add_card(request):
 
 @login_required
 def add_spotlight(request):
+    if request.POST.get('card-4') != '':
+        optional_card = Card.objects.get(name=request.POST.get('card-4'))
+    else: optional_card = None
     spotlight = Spotlight.objects.create(
         date = request.POST.get('date'),
+        card1 = Card.objects.get(name=request.POST.get('card-1')),
+        card2 = Card.objects.get(name=request.POST.get('card-2')),
+        card3 = Card.objects.get(name=request.POST.get('card-3')),
+        card4 = optional_card,
         pulled1 = True if request.POST.get('pulled-1') == 'on' else False,
         pulled2 = True if request.POST.get('pulled-2') == 'on' else False,
         pulled3 = True if request.POST.get('pulled-3') == 'on' else False,
         pulled4 = True if request.POST.get('pulled-4') == 'on' else False
     )
-    cards_to_add = [
-        request.POST.get('card-1'),
-        request.POST.get('card-2'),
-        request.POST.get('card-3')
-    ]
-    if request.POST.get('card-4'): cards_to_add.append(request.POST.get('card-4'))
-    spotlight.cards.set(cards_to_add)
     return HttpResponseRedirect(reverse('snap:spotlights'))

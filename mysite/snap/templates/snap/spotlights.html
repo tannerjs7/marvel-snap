@@ -50,9 +50,12 @@
             {% for spotlight in spotlights %}
             <tr>
                 <td>{{ spotlight.date }}</td>
-                {% for card in spotlight.cards.all %}
-                <td><img src="{{ card.image.url }}"></td>
-                {% endfor %}
+                <td {% if spotlight.pulled1 %} style="background-color: green;" {% endif %}><img src="{{ spotlight.card1.image.url }}"></td>
+                <td {% if spotlight.pulled2 %} style="background-color: green;" {% endif %}><img src="{{ spotlight.card2.image.url }}"></td>
+                <td {% if spotlight.pulled3 %} style="background-color: green;" {% endif %}><img src="{{ spotlight.card3.image.url }}"></td>
+                {% if spotlight.card4 %}
+                <td {% if spotlight.pulled4 %} style="background-color: green;" {% endif %}><img src="{{ spotlight.card4.image.url }}"></td>
+                {% endif %}
             </tr>
             {% endfor %}
         </tbody>
