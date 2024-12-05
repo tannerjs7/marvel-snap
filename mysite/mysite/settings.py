@@ -122,7 +122,7 @@ STATICFILES_DIRS = [BASE_DIR / 'static']
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
-LOGIN_URL = '/login/'  # URL to show the login form
+LOGIN_URL = '/snap/login/'  # URL to show the login form
 LOGIN_REDIRECT_URL = '/snap/cards/'  # Redirect after login
 LOGOUT_REDIRECT_URL = '/snap/login/'  # Redirect after logout
 
