@@ -1,9 +1,7 @@
-- Style stats table
 - Add comments
 - Add try/except/else to views (check best practices), add success message
 - Add edit functionality
 - Fix 'Broken pipe from'
-- On the spotlights page, make it so you can't click on pulled if you haven't selected a card
-- Make it so you are always redirected to the login page when not logged in
 - Allow multiple filters
-- Maybe change related names on spotlight foreign keys
+- Add Ice Cube card when it's added to MarvelSnapZone
+- Fix logout button alignment issues

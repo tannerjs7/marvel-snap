@@ -60,6 +60,37 @@
             {% endfor %}
         </tbody>
     </table>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Get all dropdowns and checkboxes
+            const dropdowns = document.querySelectorAll('select');
+            const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+    
+            // Function to toggle the checkbox state based on dropdown value
+            const toggleCheckbox = (dropdown, checkbox) => {
+                if (dropdown.value === '') {
+                    checkbox.disabled = true;   // Disable the checkbox if dropdown is empty
+                    checkbox.checked = false;  // Uncheck the checkbox if dropdown is empty
+                } else {
+                    checkbox.disabled = false;  // Enable the checkbox if dropdown has a value
+                }
+            };
+    
+            // Loop through each dropdown and checkbox pair
+            dropdowns.forEach((dropdown, index) => {
+                const checkbox = checkboxes[index];  // Get the corresponding checkbox
+    
+                // Initialize checkbox state based on dropdown value
+                toggleCheckbox(dropdown, checkbox);
+    
+                // Add event listener for change on dropdown
+                dropdown.addEventListener('change', function () {
+                    toggleCheckbox(dropdown, checkbox);  // Update checkbox state
+                });
+            });
+        });
+    </script>
     {% endblock %}
 </body>
 </html>

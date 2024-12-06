@@ -22,21 +22,39 @@ th, td {
     margin-bottom: 80px;
 }
 
-#image-input {
-    width: 180px;
+td:has(#image-input), td:has(#name-input), td:has(#pool-input) {
+    width: 10%
+}
+
+td:has(#cost-input), td:has(#power-input), td:has(#owned-input), td:has(#submit-card) {
+    width: 5%
+}
+
+td:has(#description-input) {
+    width: 50%
+}
+
+#image-input, #description-input {
+    width: 98%;
 }
 
 #cost-input, #power-input {
-    width: 40px;
-}
-
-#description-input {
-    width: 300px;
+    width: 85%;
 }
 
 img {
     height: 300px;
     width: 300px;
+}
+
+#filters {
+    background-color: rgb(70, 70, 70);
+    border-radius: 30px;
+    padding: 1px;
+}
+
+#filters div {
+    margin: 20px;
 }
 
 a {
@@ -48,27 +66,21 @@ a {
     padding: 8px 10px 3px;
 }
 
-#filters {
-    background-color: rgb(70, 70, 70);
-    font-size: 30px;
-    border-radius: 30px;
-    padding: 1px;
-}
-
-#filters div {
-    margin: 20px;
+#filters a {
+    font-size: clamp(10px, 4vw, 80px);
+    margin: 5px;
 }
 
 nav {
     background-color: rgb(70, 70, 70);
-    align-items: center;
     display: flex;
+    align-items: center;
     justify-content: space-evenly;
-    font-size: 60px;
     border-radius: 30px;
 }
 
 nav a {
+    font-size: clamp(10px, 5vw, 100px);
     margin: 10px 0px;
 }
 

@@ -38,7 +38,7 @@
                     <td><input type="number" id="power-input" name="power" required></td>
                     <td><input type="text" id="description-input" name="description" required></td>
                     <td>
-                        <select name="pool">
+                        <select name="pool" id="pool-input">
                             <option value="starter">Starter Card</option>
                             <option value="recruit">Recruit Season</option>
                             <option value="1">Pool 1</option>
@@ -49,15 +49,15 @@
                             <option value="none">None</option>
                         </select>
                     </td>
-                    <td><input type="checkbox" name="owned"></td>
-                    <td><input type="submit" value="submit"></td>
+                    <td><input type="checkbox" name="owned" id="owned-input"></td>
+                    <td><input type="submit" value="submit" id="submit-card"></td>
                 </form>
             </tr>
         </tbody>
     </table>
 
     <div id="filters">
-        <div>Current Filter</div>
+        <h1>Current Filter</h1>
         <div>
             <a href="{% url 'snap:filter' '1' %}" {% if filter == '1' %} class="active" {% endif %}>Pool 1</a>
             <a href="{% url 'snap:filter' '2' %}" {% if filter == '2' %} class="active" {% endif %}>Pool 2</a>
@@ -109,7 +109,8 @@
         $(document).ready(function() {
             $('#data-table').DataTable({
                 "color": "white",
-                "pageLength": "25",
+                // Disabled for now, seemed to be causing issues
+                // "pageLength": "100",
                 "order": [[1, 'asc']],
                 "columnDefs": [{
                     "targets": [0, 6, 7],
