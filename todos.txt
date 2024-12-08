@@ -3,5 +3,4 @@
 - Add edit functionality
 - Fix 'Broken pipe from'
 - Allow multiple filters
-- Add Ice Cube card when it's added to MarvelSnapZone
 - Fix logout button alignment issues
