@@ -4,3 +4,4 @@
 - Fix 'Broken pipe from'
 - Allow multiple filters
 - Fix logout button alignment issues
+- Fix mobile view
