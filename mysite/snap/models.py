@@ -24,6 +24,7 @@ class Card(models.Model):
     def __str__(self):
         return self.name
     
+
 class Spotlight(models.Model):
     date = models.DateField()
     card1 = models.ForeignKey(Card, null=True, on_delete=models.SET_NULL, related_name='first_spotlight_slots')
@@ -37,3 +38,22 @@ class Spotlight(models.Model):
 
     def __str__(self):
         return 'Spotlight ' + str(self.date)
+    
+
+class Deck(models.Model):
+    name = models.CharField(max_length=100)
+    card1 = models.ForeignKey(Card, null=True, on_delete=models.SET_NULL, related_name='first_deck_slots')
+    card2 = models.ForeignKey(Card, null=True, on_delete=models.SET_NULL, related_name='second_deck_slots')
+    card3 = models.ForeignKey(Card, null=True, on_delete=models.SET_NULL, related_name='third_deck_slots')
+    card4 = models.ForeignKey(Card, null=True, on_delete=models.SET_NULL, related_name='fourth_deck_slots')
+    card5 = models.ForeignKey(Card, null=True, on_delete=models.SET_NULL, related_name='fifth_deck_slots')
+    card6 = models.ForeignKey(Card, null=True, on_delete=models.SET_NULL, related_name='sixth_deck_slots')
+    card7 = models.ForeignKey(Card, null=True, on_delete=models.SET_NULL, related_name='seventh_deck_slots')
+    card8 = models.ForeignKey(Card, null=True, on_delete=models.SET_NULL, related_name='eighth_deck_slots')
+    card9 = models.ForeignKey(Card, null=True, on_delete=models.SET_NULL, related_name='ninth_deck_slots')
+    card10 = models.ForeignKey(Card, null=True, on_delete=models.SET_NULL, related_name='tenth_deck_slots')
+    card11 = models.ForeignKey(Card, null=True, on_delete=models.SET_NULL, related_name='eleventh_deck_slots')
+    card12 = models.ForeignKey(Card, null=True, on_delete=models.SET_NULL, related_name='twelfth_deck_slots')
+
+    def __str__(self):
+        return self.name

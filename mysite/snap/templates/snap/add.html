@@ -1,0 +1,118 @@
+{% extends 'snap/base.html' %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% block head %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add</title>
+    {% load static filters %}
+    <link rel="stylesheet" href="{% static 'snap/style.css' %}">
+    {% endblock %}
+</head>
+<body>
+    {% block body %}
+    <h1 id="add-card-title">Add a Card</h1>
+    <table id="add-card-form">
+        <thead>
+            <tr>
+                {% for column in columns %}
+                <th>{{ column|title }}</th>
+                {% endfor %}
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr>
+                <form action="{% url 'snap:add_card' %}" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <td><span>Image</span><input type="file" id="image-input" name="image" required></td>
+                    <td><span>Name</span><input type="text" id="name-input" name="name" required></td>
+                    <td><span>Cost</span><input type="number" id="cost-input" name="cost" required></td>
+                    <td><span>Power</span><input type="number" id="power-input" name="power" required></td>
+                    <td><span>Description</span><input type="text" id="description-input" name="description" required></td>
+                    <td>
+                        <span>Pool</span>
+                        <select name="pool" id="pool-input">
+                            <option value="starter">Starter Card</option>
+                            <option value="recruit">Recruit Season</option>
+                            <option value="1">Pool 1</option>
+                            <option value="2">Pool 2</option>
+                            <option value="3">Pool 3</option>
+                            <option value="4">Pool 4</option>
+                            <option value="5">Pool 5</option>
+                            <option value="none">None</option>
+                        </select>
+                    </td>
+                    <td><span>Owned</span><input type="checkbox" name="owned" id="owned-input"></td>
+                    <td><input type="submit" value="Submit" id="submit-card"></td>
+                </form>
+            </tr>
+        </tbody>
+    </table>
+
+    <h1>Add a Spotlight</h1>
+    <table>
+        <tbody>
+            <tr>
+                <form action="{% url 'snap:add_spotlight' %}" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <td>
+                        <div>Date</div>
+                        <input type="date" id="date-input" name="date" required>
+                    </td>
+                    {% for slot in slots %}
+                    <td>
+                        <div>
+                            <span>Card {{ slot }}:</span>
+                            <span>Pulled</span>
+                            <input type="checkbox" name="pulled-{{ slot }}">
+                        </div>
+                        <select name="card-{{ slot }}" {% if slot != 4 %} required {% endif %}>
+                            <option value="" selected></option>
+                            {% for card in cards %}
+                            <option value="{{ card.name }}">{{ card.name }}</option>
+                            {% endfor %}
+                        </select>
+                    </td>
+                    {% endfor %}
+                    <td><input type="submit" value="Submit"></td>
+                </form>
+            </tr>
+        </tbody>
+    </table>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Get all dropdowns and checkboxes
+            const dropdowns = document.querySelectorAll('select');
+            const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+    
+            // Function to toggle the checkbox state based on dropdown value
+            const toggleCheckbox = (dropdown, checkbox) => {
+                if (dropdown.value === '') {
+                    checkbox.disabled = true;   // Disable the checkbox if dropdown is empty
+                    checkbox.checked = false;  // Uncheck the checkbox if dropdown is empty
+                } else {
+                    checkbox.disabled = false;  // Enable the checkbox if dropdown has a value
+                }
+            };
+    
+            // Loop through each dropdown and checkbox pair
+            dropdowns.forEach((dropdown, index) => {
+                const checkbox = checkboxes[index];  // Get the corresponding checkbox
+    
+                // Initialize checkbox state based on dropdown value
+                toggleCheckbox(dropdown, checkbox);
+    
+                // Add event listener for change on dropdown
+                dropdown.addEventListener('change', function () {
+                    toggleCheckbox(dropdown, checkbox);  // Update checkbox state
+                });
+            });
+        });
+    </script>
+    {% endblock %}
+</body>
+</html>

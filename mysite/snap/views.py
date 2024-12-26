@@ -2,11 +2,10 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render
 from django.urls import reverse
 from django.db.models import Q
-from .models import Card, Spotlight
+from .models import Card, Spotlight, Deck
 from django.contrib.auth.decorators import login_required
 
 
-@login_required
 def index(request, filter=None):
     if filter == 'owned': cards = Card.objects.filter(owned=True)
     elif filter == 'unowned': cards = Card.objects.filter(owned=False)
@@ -22,7 +21,6 @@ def index(request, filter=None):
     return render(request, 'snap/index.html', context)
 
 
-@login_required
 def stats(request):
     cards = Card.objects.all()
     owned_rates = [[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]]
@@ -59,7 +57,6 @@ def stats(request):
     return render(request, 'snap/stats.html', context)
 
 
-@login_required
 def spotlights(request):
     context = {
         'spotlights': Spotlight.objects.all().order_by('-date'),
@@ -70,12 +67,31 @@ def spotlights(request):
 
 
 @login_required
+def decks(request):
+    context = {
+        'decks': Deck.objects.all(),
+        'cards': Card.objects.filter(~Q(pool='none')).order_by('name')
+    }
+    return render(request, 'snap/decks.html', context)
+
+
+@login_required
 def toggle_owned(request, card_name):
     card = get_object_or_404(Card, pk=card_name)
     if request.POST.get('owned') == 'on': card.owned = True
     else: card.owned = False
     card.save()
     return HttpResponseRedirect(reverse('snap:index'))
+
+
+@login_required
+def add(request):
+    context = {
+        # 'spotlights': Spotlight.objects.all().order_by('-date'),
+        'cards': Card.objects.filter(~Q(pool='none')).order_by('name'),
+        'slots': range(1, 5)
+    }
+    return render(request, 'snap/add.html', context)
 
 
 @login_required

@@ -13,37 +13,6 @@
 </head>
 <body>
     {% block body %}
-    <h1>Add a Spotlight</h1>
-    <table>
-        <tbody>
-            <tr>
-                <form action="{% url 'snap:add_spotlight' %}" method="post" enctype="multipart/form-data">
-                    {% csrf_token %}
-                    <td>
-                        <div>Date</div>
-                        <input type="date" id="date-input" name="date" required>
-                    </td>
-                    {% for slot in slots %}
-                    <td>
-                        <div>
-                            <span>Card {{ slot }}:</span>
-                            <span>Pulled</span>
-                            <input type="checkbox" name="pulled-{{ slot }}">
-                        </div>
-                        <select name="card-{{ slot }}" {% if slot != 4 %} required {% endif %}>
-                            <option value="" selected></option>
-                            {% for card in cards %}
-                            <option value="{{ card.name }}">{{ card.name }}</option>
-                            {% endfor %}
-                        </select>
-                    </td>
-                    {% endfor %}
-                    <td><input type="submit" value="submit"></td>
-                </form>
-            </tr>
-        </tbody>
-    </table>
-
     <h1>Spotlights</h1>
     <table>
         <tbody>

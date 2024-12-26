@@ -1,0 +1,102 @@
+{% extends 'snap/base.html' %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% block head %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Decks</title>
+    {% load static filters %}
+    <link rel="stylesheet" href="{% static 'snap/style.css' %}">
+    {% endblock %}
+</head>
+<body>
+    {% block body %}
+    <!-- <h1>Add a Spotlight</h1>
+    <table>
+        <tbody>
+            <tr>
+                <form action="{% url 'snap:add_spotlight' %}" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <td>
+                        <div>Date</div>
+                        <input type="date" id="date-input" name="date" required>
+                    </td>
+                    {% for slot in slots %}
+                    <td>
+                        <div>
+                            <span>Card {{ slot }}:</span>
+                            <span>Pulled</span>
+                            <input type="checkbox" name="pulled-{{ slot }}">
+                        </div>
+                        <select name="card-{{ slot }}" {% if slot != 4 %} required {% endif %}>
+                            <option value="" selected></option>
+                            {% for card in cards %}
+                            <option value="{{ card.name }}">{{ card.name }}</option>
+                            {% endfor %}
+                        </select>
+                    </td>
+                    {% endfor %}
+                    <td><input type="submit" value="submit"></td>
+                </form>
+            </tr>
+        </tbody>
+    </table> -->
+
+    <h1>Decks</h1>
+    <table>
+        <tbody>
+            {% for deck in decks %}
+            <tr>
+                <td>{{ deck.name }}</td>
+                <td><img src="{{ deck.card1.image.url }}"></td>
+                <td><img src="{{ deck.card2.image.url }}"></td>
+                <td><img src="{{ deck.card3.image.url }}"></td>
+                <td><img src="{{ deck.card4.image.url }}"></td>
+                <td><img src="{{ deck.card5.image.url }}"></td>
+                <td><img src="{{ deck.card6.image.url }}"></td>
+                <td><img src="{{ deck.card7.image.url }}"></td>
+                <td><img src="{{ deck.card8.image.url }}"></td>
+                <td><img src="{{ deck.card9.image.url }}"></td>
+                <td><img src="{{ deck.card10.image.url }}"></td>
+                <td><img src="{{ deck.card11.image.url }}"></td>
+                <td><img src="{{ deck.card12.mage.url }}"></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Get all dropdowns and checkboxes
+            const dropdowns = document.querySelectorAll('select');
+            const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+    
+            // Function to toggle the checkbox state based on dropdown value
+            const toggleCheckbox = (dropdown, checkbox) => {
+                if (dropdown.value === '') {
+                    checkbox.disabled = true;   // Disable the checkbox if dropdown is empty
+                    checkbox.checked = false;  // Uncheck the checkbox if dropdown is empty
+                } else {
+                    checkbox.disabled = false;  // Enable the checkbox if dropdown has a value
+                }
+            };
+    
+            // Loop through each dropdown and checkbox pair
+            dropdowns.forEach((dropdown, index) => {
+                const checkbox = checkboxes[index];  // Get the corresponding checkbox
+    
+                // Initialize checkbox state based on dropdown value
+                toggleCheckbox(dropdown, checkbox);
+    
+                // Add event listener for change on dropdown
+                dropdown.addEventListener('change', function () {
+                    toggleCheckbox(dropdown, checkbox);  // Update checkbox state
+                });
+            });
+        });
+    </script>
+    {% endblock %}
+</body>
+</html>

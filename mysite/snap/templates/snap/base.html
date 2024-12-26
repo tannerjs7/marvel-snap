@@ -15,11 +15,21 @@
         <a href="{% url 'snap:index' %}" {% if request.path|slice:"6:11" == 'cards' %} class="active" {% endif %} >Cards</a>
         <a href="{% url 'snap:stats' %}" {% if request.path|slice:"6:11" == 'stats' %} class="active" {% endif %} >Stats</a>
         <a href="{% url 'snap:spotlights' %}" {% if request.path|slice:"6:11" == 'spotl' %} class="active" {% endif %} >Spotlights</a>
-        <a href="{% url 'admin:index' %}">Admin</a>
-        <form method="post" action="{% url 'snap:logout' %}">
-            {% csrf_token %}
-            <a href="#" onclick="this.closest('form').submit(); return false;">Logout</a>
-        </form>
+        <a href="{% url 'snap:decks' %}" {% if request.path|slice:"6:11" == 'decks' %} class="active" {% endif %} >Decks</a>
+        <a href="{% url 'snap:add' %}" {% if request.path|slice:"6:9" == 'add' %} class="active" {% endif %} >Add</a>
+        <div>
+            <form method="get" action="{% url 'admin:index' %}">
+                <input type="submit" value="Admin">
+            </form>
+            <form method="get" action="{% url 'snap:login' %}">
+                <input type="submit" value="Login">
+            </form>
+            <form method="post" action="{% url 'snap:logout' %}">
+                {% csrf_token %}
+                <input type="submit" value="Logout">
+                <!-- <a href="#" onclick="this.closest('form').submit(); return false;">Logout</a> -->
+            </form>
+        </div>  
     </nav>
     {% endblock %}
     {% block body %}
