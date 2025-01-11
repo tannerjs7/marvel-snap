@@ -8,3 +8,4 @@
 - Navbar styles (buttons)
 - Add 'Add a Deck'
 - Lock down toggle owned checkbox and/or submit button on index page
+- Change nav button colors on hover
