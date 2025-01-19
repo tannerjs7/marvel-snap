@@ -46,6 +46,7 @@
                         </select>
                     </td>
                     <td><span>Owned</span><input type="checkbox" name="owned" id="owned-input"></td>
+                    <td><span>Released</span><input type="checkbox" name="released" id="released-input"></td>
                     <td><input type="submit" value="Submit" id="submit-card"></td>
                 </form>
             </tr>
@@ -83,11 +84,16 @@
         </tbody>
     </table>
 
+    <h1>Add a Deck</h1>
+
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             // Get all dropdowns and checkboxes
-            const dropdowns = document.querySelectorAll('select');
-            const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+            let dropdowns = document.querySelectorAll('select');
+            let checkboxes = document.querySelectorAll('input[type="checkbox"]');
+            // There are 2 checkboxes and 1 dropdown before the ones I want to target
+            dropdowns = Array.from(dropdowns).slice(1);
+            checkboxes = Array.from(checkboxes).slice(2);
     
             // Function to toggle the checkbox state based on dropdown value
             const toggleCheckbox = (dropdown, checkbox) => {

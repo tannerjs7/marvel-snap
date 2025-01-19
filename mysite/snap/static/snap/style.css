@@ -1,7 +1,7 @@
 body {
     text-align: center;
-    background-image: linear-gradient(to right, black, #404040);
     color: lightgray;
+    background-color: #202020;
 }
 
 nav input {

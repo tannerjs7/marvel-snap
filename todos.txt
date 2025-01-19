@@ -5,7 +5,8 @@
 - Allow multiple filters
 - Fix mobile view
 - Add dynamic sizing to 'Add a Spotlight'
-- Navbar styles (buttons)
-- Add 'Add a Deck'
+- Fix login button
+- Add 'Add a Deck', resize/restyle page
 - Lock down toggle owned checkbox and/or submit button on index page
 - Change nav button colors on hover
+- Create released/unreleased filters
