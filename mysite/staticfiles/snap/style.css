@@ -1,11 +1,20 @@
 body {
     text-align: center;
-    background-image: linear-gradient(to right, black, #404040);
     color: lightgray;
+    background-color: #202020;
 }
 
 table {
     width: 100%
+}
+
+#stats-table {
+    font-size: clamp(10px, 4vw, 40px);
+}
+
+h1 {
+    font-size: clamp(20px, 4vw, 50px);
+    margin: 20px 0px;
 }
 
 th, td {
@@ -13,44 +22,39 @@ th, td {
     padding: 5px;
 }
 
-#add-card-title {
-    margin-top: 80px;
+.add-title {
+    margin-top: 70px;
 }
 
-#add-card-form {
-    width: 100%;
-    margin-bottom: 80px;
+td:has(#image-input), td:has(#pool-input) {
+    width: 30%
 }
 
-td:has(#image-input), td:has(#name-input), td:has(#pool-input) {
-    width: 10%
-}
-
-td:has(#cost-input), td:has(#power-input), td:has(#owned-input), td:has(#submit-card) {
-    width: 5%
-}
-
-td:has(#description-input) {
+td:has(#name-input), td:has(#owned-input) {
     width: 50%
 }
 
-#image-input, #description-input {
-    width: 98%;
+td:has(#cost-input), td:has(#power-input), td:has(#released-input), td:has(#submit-card) {
+    width: 10%
 }
 
-#cost-input, #power-input {
+#description-input {
+    width: 97%;
+}
+
+#image-input, #pool-input {
+    width: 100%;
+}
+
+#cost-input, #power-input, #name-input {
     width: 85%;
-}
-
-img {
-    height: 300px;
-    width: 300px;
 }
 
 #filters {
     background-color: rgb(70, 70, 70);
     border-radius: 30px;
     padding: 1px;
+    margin: 20px 0px;
 }
 
 #filters div {
@@ -84,6 +88,21 @@ nav a {
     margin: 10px 0px;
 }
 
+nav input {
+    background-color: green;
+    border: 1px solid black;
+/*     width: 60px; */
+/*     height: 18px; */
+    font-size: clamp(8px, 1vw, 35px);
+    margin: 1px;
+    border-radius: 30px;
+    cursor: pointer;
+}
+
+a:hover, nav input:hover  {
+    background-color: white;
+}
+
 .dataTables_filter input, .dataTables_length select {
     color: white;
     margin-bottom: 10px;
@@ -91,4 +110,9 @@ nav a {
 
 .active {
     background-color: yellow;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
 }
