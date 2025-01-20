@@ -13,7 +13,7 @@
 </head>
 <body>
     {% block body %}
-    <h1 id="add-card-title">Add a Card</h1>
+    <h1 class="add-title">Add a Card</h1>
     <table id="add-card-form">
         <thead>
             <tr>
@@ -27,33 +27,39 @@
             <tr>
                 <form action="{% url 'snap:add_card' %}" method="post" enctype="multipart/form-data">
                     {% csrf_token %}
-                    <td><span>Image</span><input type="file" id="image-input" name="image" required></td>
-                    <td><span>Name</span><input type="text" id="name-input" name="name" required></td>
-                    <td><span>Cost</span><input type="number" id="cost-input" name="cost" required></td>
-                    <td><span>Power</span><input type="number" id="power-input" name="power" required></td>
-                    <td><span>Description</span><input type="text" id="description-input" name="description" required></td>
-                    <td>
-                        <span>Pool</span>
-                        <select name="pool" id="pool-input">
-                            <option value="starter">Starter Card</option>
-                            <option value="recruit">Recruit Season</option>
-                            <option value="1">Pool 1</option>
-                            <option value="2">Pool 2</option>
-                            <option value="3">Pool 3</option>
-                            <option value="4">Pool 4</option>
-                            <option value="5">Pool 5</option>
-                            <option value="none">None</option>
-                        </select>
-                    </td>
-                    <td><span>Owned</span><input type="checkbox" name="owned" id="owned-input"></td>
-                    <td><span>Released</span><input type="checkbox" name="released" id="released-input"></td>
-                    <td><input type="submit" value="Submit" id="submit-card"></td>
+                    <tr>
+                        <td><div>Image</div><input type="file" id="image-input" name="image" required></td>
+                        <td><div>Name</div><input type="text" id="name-input" name="name" required></td>
+                        <td><div>Cost</div><input type="number" id="cost-input" name="cost" required></td>
+                        <td><div>Power</div><input type="number" id="power-input" name="power" required></td>
+                    </tr>
+                    <tr>
+                        <td colspan="4"><span>Description</span><input type="text" id="description-input" name="description" required></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div>Pool</div>
+                            <select name="pool" id="pool-input">
+                                <option value="starter">Starter Card</option>
+                                <option value="recruit">Recruit Season</option>
+                                <option value="1">Pool 1</option>
+                                <option value="2">Pool 2</option>
+                                <option value="3">Pool 3</option>
+                                <option value="4">Pool 4</option>
+                                <option value="5">Pool 5</option>
+                                <option value="none">None</option>
+                            </select>
+                        </td>
+                        <td><div>Owned</div><input type="checkbox" name="owned" id="owned-input"></td>
+                        <td><div>Released</div><input type="checkbox" name="released" id="released-input"></td>
+                        <td><input type="submit" value="Submit" id="submit-card"></td>
+                    </tr>
                 </form>
             </tr>
         </tbody>
     </table>
 
-    <h1>Add a Spotlight</h1>
+    <h1 class="add-title">Add a Spotlight</h1>
     <table>
         <tbody>
             <tr>
@@ -84,9 +90,10 @@
         </tbody>
     </table>
 
-    <h1>Add a Deck</h1>
+    <h1 class="add-title">Add a Deck</h1>
 
     <script>
+        // Script to lock 'Pulled' checkboxes if their corresponding dropdowns aren't filled
         document.addEventListener('DOMContentLoaded', function () {
             // Get all dropdowns and checkboxes
             let dropdowns = document.querySelectorAll('select');

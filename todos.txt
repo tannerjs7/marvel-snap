@@ -5,5 +5,5 @@
 --- Allow multiple filters
 --- Fix mobile view
 - Add dynamic sizing to 'Add a Spotlight'
-- Add 'Add a Deck', resize/restyle page
+- Add 'Add a Deck'
 - Navbar dropdown for Admin, Login, Logout

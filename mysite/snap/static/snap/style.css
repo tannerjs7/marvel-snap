@@ -22,38 +22,32 @@ th, td {
     padding: 5px;
 }
 
-#add-card-title {
-    margin-top: 80px;
+.add-title {
+    margin-top: 70px;
 }
 
-#add-card-form {
-    width: 100%;
-    margin-bottom: 80px;
+td:has(#image-input), td:has(#pool-input) {
+    width: 30%
 }
 
-td:has(#image-input), td:has(#name-input), td:has(#pool-input) {
-    width: 10%
-}
-
-td:has(#cost-input), td:has(#power-input), td:has(#owned-input), td:has(#submit-card) {
-    width: 5%
-}
-
-td:has(#description-input) {
+td:has(#name-input), td:has(#owned-input) {
     width: 50%
 }
 
-#image-input, #description-input {
-    width: 98%;
+td:has(#cost-input), td:has(#power-input), td:has(#released-input), td:has(#submit-card) {
+    width: 10%
 }
 
-#cost-input, #power-input {
+#description-input {
+    width: 97%;
+}
+
+#image-input, #pool-input {
+    width: 100%;
+}
+
+#cost-input, #power-input, #name-input {
     width: 85%;
-}
-
-img {
-    height: 300px;
-    width: 300px;
 }
 
 #filters {
@@ -116,4 +110,9 @@ a:hover, nav input:hover  {
 
 .active {
     background-color: yellow;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
 }
