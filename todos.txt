@@ -1,12 +1,9 @@
 - Add comments
 - Add try/except/else to views (check best practices), add success message
-- Add edit functionality
-- Fix 'Broken pipe from'
-- Allow multiple filters
-- Fix mobile view
+--- Add edit functionality
+--- Fix 'Broken pipe from'
+--- Allow multiple filters
+--- Fix mobile view
 - Add dynamic sizing to 'Add a Spotlight'
-- Fix login button
 - Add 'Add a Deck', resize/restyle page
-- Lock down toggle owned checkbox and/or submit button on index page
-- Change nav button colors on hover
-- Create released/unreleased filters
+- Navbar dropdown for Admin, Login, Logout

@@ -129,7 +129,7 @@ MEDIA_ROOT = BASE_DIR / 'media'
 
 LOGIN_URL = '/snap/login/'  # URL to show the login form
 LOGIN_REDIRECT_URL = '/snap/cards/'  # Redirect after login
-LOGOUT_REDIRECT_URL = '/snap/login/'  # Redirect after logout
+LOGOUT_REDIRECT_URL = '/snap/cards/'  # Redirect after logout
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field

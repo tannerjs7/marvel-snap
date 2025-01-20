@@ -8,7 +8,9 @@ from django.contrib.auth.decorators import login_required
 
 def index(request, filter=None):
     if filter == 'owned': cards = Card.objects.filter(owned=True)
-    elif filter == 'unowned': cards = Card.objects.filter(owned=False)
+    elif filter == 'unowned': cards = Card.objects.filter(owned=False, released=True).exclude(pool='none')
+    elif filter == 'released': cards = Card.objects.filter(released=True).exclude(pool='none')
+    elif filter == 'unreleased': cards = Card.objects.filter(released=False)
     elif filter == 'none': cards = Card.objects.filter(pool='none')
     elif filter == 'starter': cards = Card.objects.filter(Q(pool='starter') | Q(pool='recruit'))
     elif filter: cards = Card.objects.filter(pool=filter)

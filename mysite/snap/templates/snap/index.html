@@ -22,6 +22,11 @@
     <div id="filters">
         <h1>Current Filter</h1>
         <div>
+            <a href="{% url 'snap:index' %}" {% if filter == None %} class="active" {% endif %}>All</a>
+            <a href="{% url 'snap:filter' 'none' %}" {% if filter == 'none' %} class="active" {% endif %}>None</a>
+            <a href="{% url 'snap:filter' 'starter' %}" {% if filter == 'starter' %} class="active" {% endif %}>Starter/Recruit</a>
+        </div>
+        <div>
             <a href="{% url 'snap:filter' '1' %}" {% if filter == '1' %} class="active" {% endif %}>Pool 1</a>
             <a href="{% url 'snap:filter' '2' %}" {% if filter == '2' %} class="active" {% endif %}>Pool 2</a>
             <a href="{% url 'snap:filter' '3' %}" {% if filter == '3' %} class="active" {% endif %}>Pool 3</a>
@@ -29,13 +34,10 @@
             <a href="{% url 'snap:filter' '5' %}" {% if filter == '5' %} class="active" {% endif %}>Pool 5</a>
         </div>
         <div>
-            <a href="{% url 'snap:filter' 'starter' %}" {% if filter == 'starter' %} class="active" {% endif %}>Starter/Recruit</a>
-            <a href="{% url 'snap:filter' 'none' %}" {% if filter == 'none' %} class="active" {% endif %}>None</a>
-            <a href="{% url 'snap:index' %}" {% if filter == None %} class="active" {% endif %}>All</a>
-        </div>
-        <div>
             <a href="{% url 'snap:filter' 'owned' %}" {% if filter == 'owned' %} class="active" {% endif %}>Owned</a>
             <a href="{% url 'snap:filter' 'unowned' %}" {% if filter == 'unowned' %} class="active" {% endif %}>Unowned</a>
+            <a href="{% url 'snap:filter' 'released' %}" {% if filter == 'released' %} class="active" {% endif %}>Released</a>
+            <a href="{% url 'snap:filter' 'unreleased' %}" {% if filter == 'unreleased' %} class="active" {% endif %}>Unreleased</a>
         </div>
     </div>
 
