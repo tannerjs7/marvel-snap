@@ -17,7 +17,7 @@ def index(request, filter=None):
     else: cards = Card.objects.filter(~Q(pool='none'))
     context = {
         'cards': cards,
-        'columns': ['image', 'name', 'cost', 'power', 'description', 'pool', 'owned', 'released', 'submit'],
+        'columns': ['image', 'name', 'cost', 'power', 'description', 'pool', 'released', 'owned', 'submit'],
         'filter': filter
     }
     return render(request, 'snap/index.html', context)
@@ -25,7 +25,7 @@ def index(request, filter=None):
 
 def stats(request):
     cards = Card.objects.all()
-    owned_rates = [[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]]
+    owned_rates = [[0, 0, 0] for _ in range(7)]
     pools = ['Starter/Recruit', 'Pool 1', 'Pool 2', 'Pool 3', 'Pool 4', 'Pool 5', 'All']
 
     for card in cards:
@@ -51,6 +51,11 @@ def stats(request):
             if card.pool != 'none':
                 owned_rates[6][1] += 1
                 if card.owned == True: owned_rates[6][0] += 1
+
+    for rate in owned_rates:
+        rate[2] = rate[0] / rate[1] * 100
+        if rate[2] == 100: rate[2] = 100
+        else: rate[2] = round(rate[2], 1)
 
     context = {
         'cards': cards,

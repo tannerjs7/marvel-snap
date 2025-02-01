@@ -31,7 +31,7 @@
                 <td>{{ pool }}</td>
                 <td>{{ owned_rates|lookup0:count }}</td>
                 <td>{{ owned_rates|lookup1:count }}</td>
-                <td>{% widthratio owned_rates|lookup0:count owned_rates|lookup1:count 100 %}</td>
+                <td>{{ owned_rates|lookup2:count }}</td>
             </tr>
             {% endwith %}
             {% endfor %}

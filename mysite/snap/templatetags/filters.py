@@ -17,3 +17,8 @@ def lookup0(d, key):
 @register.filter
 def lookup1(d, key):
     return d[key][1]
+
+
+@register.filter
+def lookup2(d, key):
+    return d[key][2]
