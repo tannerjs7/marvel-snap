@@ -97,7 +97,6 @@ def toggle_checkboxes(request, card_name):
 @login_required
 def add(request):
     context = {
-        # 'spotlights': Spotlight.objects.all().order_by('-date'),
         'cards': Card.objects.filter(~Q(pool='none')).order_by('name'),
         'slots': range(1, 5)
     }
@@ -113,6 +112,7 @@ def add_card(request):
         power = request.POST.get('power'),
         description = request.POST.get('description'),
         pool = request.POST.get('pool'),
+        released = True if request.POST.get('released') == 'on' else False,
         owned = True if request.POST.get('owned') == 'on' else False
     )
     card.save()

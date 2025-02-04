@@ -7,3 +7,4 @@
 - Add dynamic sizing to 'Add a Spotlight'
 - Add 'Add a Deck'
 - Navbar dropdown for Admin, Login, Logout
+- Add more stats
