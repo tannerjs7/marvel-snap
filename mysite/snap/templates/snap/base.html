@@ -15,6 +15,7 @@
         <a href="{% url 'snap:index' %}" {% if request.path|slice:"6:11" == 'cards' %} class="active" {% endif %} >Cards</a>
         <a href="{% url 'snap:stats' %}" {% if request.path|slice:"6:11" == 'stats' %} class="active" {% endif %} >Stats</a>
         <a href="{% url 'snap:spotlights' %}" {% if request.path|slice:"6:11" == 'spotl' %} class="active" {% endif %} >Spotlights</a>
+        <a href="{% url 'snap:packs' %}" {% if request.path|slice:"6:11" == 'packs' %} class="active" {% endif %} >Packs</a>
         <a href="{% url 'snap:decks' %}" {% if request.path|slice:"6:11" == 'decks' %} class="active" {% endif %} >Decks</a>
         <a href="{% url 'snap:add' %}" {% if request.path|slice:"6:9" == 'add' %} class="active" {% endif %} >Add</a>
         <div>
