@@ -74,6 +74,11 @@ def spotlights(request):
     return render(request, 'snap/spotlights.html', context)
 
 
+def packs(request):
+    context = {}
+    return render(request, 'snap/packs.html', context)
+
+
 @login_required
 def decks(request):
     context = {

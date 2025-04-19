@@ -1,0 +1,45 @@
+{% extends 'snap/base.html' %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% block head %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Packs</title>
+    {% load static filters %}
+    <link rel="stylesheet" href="{% static 'snap/style.css' %}">
+    {% endblock %}
+</head>
+<body>
+    {% block body %}
+    <h1>Packs</h1>
+    <!-- <table class="deck">
+        {% for deck in decks %}
+        <tbody>
+            <td colspan="4">{{ deck.name }}</td>
+            <tr>
+                <td><img src="{{ deck.card1.image.url }}"></td>
+                <td><img src="{{ deck.card2.image.url }}"></td>
+                <td><img src="{{ deck.card3.image.url }}"></td>
+                <td><img src="{{ deck.card4.image.url }}"></td>
+            </tr>
+            <tr>
+                <td><img src="{{ deck.card5.image.url }}"></td>
+                <td><img src="{{ deck.card6.image.url }}"></td>
+                <td><img src="{{ deck.card7.image.url }}"></td>
+                <td><img src="{{ deck.card8.image.url }}"></td>
+            </tr>
+            <tr>
+                <td><img src="{{ deck.card9.image.url }}"></td>
+                <td><img src="{{ deck.card10.image.url }}"></td>
+                <td><img src="{{ deck.card11.image.url }}"></td>
+                <td><img src="{{ deck.card12.image.url }}"></td>
+            </tr>
+        </tbody>
+        {% endfor %}
+    </table> -->
+
+    {% endblock %}
+</body>
+</html>

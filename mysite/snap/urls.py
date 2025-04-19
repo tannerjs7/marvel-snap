@@ -9,6 +9,7 @@ urlpatterns = [
     path('cards/<str:filter>/', views.index, name='filter'),
     path('stats/', views.stats, name='stats'),
     path('spotlights/', views.spotlights, name='spotlights'),
+    path('packs/', views.packs, name='packs'),
     path('decks/', views.decks, name='decks'),
     path('<str:card_name>/toggle_checkboxes/', views.toggle_checkboxes, name='toggle_checkboxes'),
     path('add/', views.add, name='add'),
