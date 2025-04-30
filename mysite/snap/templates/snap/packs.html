@@ -14,31 +14,35 @@
 <body>
     {% block body %}
     <h1>Packs</h1>
-    <!-- <table class="deck">
-        {% for deck in decks %}
+    <table>
         <tbody>
-            <td colspan="4">{{ deck.name }}</td>
+            {% for pack in packs %}
             <tr>
-                <td><img src="{{ deck.card1.image.url }}"></td>
-                <td><img src="{{ deck.card2.image.url }}"></td>
-                <td><img src="{{ deck.card3.image.url }}"></td>
-                <td><img src="{{ deck.card4.image.url }}"></td>
+                <td>{{ pack.get_pack_type_display }}</td>
+
+                <td>{{ pack.date }}</td>
+
+                <td><img src="{{ pack.main_card.image.url }}"></td>
+
+                {% if pack.bonus_card1 %}
+                <td><img src="{{ pack.bonus_card1.image.url }}"></td>
+                {% endif %}
+
+                {% if pack.bonus1 != 'card' %}
+                <td>{{ pack.get_bonus1_display }}</td>
+                {% endif %}
+
+                {% if pack.bonus_card2 %}
+                <td><img src="{{ pack.bonus_card2.image.url }}"></td>
+                {% endif %}
+
+                {% if pack.bonus2 != 'card' %}
+                <td>{{ pack.get_bonus2_display }}</td>
+                {% endif %}
             </tr>
-            <tr>
-                <td><img src="{{ deck.card5.image.url }}"></td>
-                <td><img src="{{ deck.card6.image.url }}"></td>
-                <td><img src="{{ deck.card7.image.url }}"></td>
-                <td><img src="{{ deck.card8.image.url }}"></td>
-            </tr>
-            <tr>
-                <td><img src="{{ deck.card9.image.url }}"></td>
-                <td><img src="{{ deck.card10.image.url }}"></td>
-                <td><img src="{{ deck.card11.image.url }}"></td>
-                <td><img src="{{ deck.card12.image.url }}"></td>
-            </tr>
+            {% endfor %}
         </tbody>
-        {% endfor %}
-    </table> -->
+    </table>
 
     {% endblock %}
 </body>

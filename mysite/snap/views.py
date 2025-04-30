@@ -2,7 +2,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render
 from django.urls import reverse
 from django.db.models import Q
-from .models import Card, Spotlight, Deck
+from .models import Card, Spotlight, Deck, Pack
 from django.contrib.auth.decorators import login_required
 
 
@@ -75,7 +75,11 @@ def spotlights(request):
 
 
 def packs(request):
-    context = {}
+    context = {
+        'packs': Pack.objects.all().order_by('-date'),
+        'cards': Card.objects.filter(~Q(pool='none')).order_by('name'),
+        'slots': range(1, 3)
+    }
     return render(request, 'snap/packs.html', context)
 
 
